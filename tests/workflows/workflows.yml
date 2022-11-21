@@ -77,3 +77,90 @@ example.TASK_ROUTING:
     default: q1
     customs:
       TASK_B: q2
+
+example.NESTED_WORKFLOW:
+  type: chain
+  tasks:
+    - TASK_A
+    - EXAMPLE_GROUP:
+        type: group
+        tasks:
+          - TASK_B:
+              type: chain
+              tasks:
+                - TASK_1
+                - TASK_2
+          - TASK_C
+    - TASK_D
+
+example.NESTED_WORKFLOW_2_GROUP_CHAINED:
+  type: chain
+  tasks:
+    - TASK_A
+    - EXAMPLE_GROUP:
+        type: group
+        tasks:
+          - TASK_B:
+              type: chain
+              tasks:
+                - TASK_1
+                - TASK_2
+          - TASK_C:
+              type: chain
+              tasks:
+                - TASK_1
+                - TASK_2
+    - TASK_D
+
+example.NESTED_WORKFLOW_2_MULTI_GROUP:
+  type: chain
+  tasks:
+    - TASK_A
+    - EXAMPLE_GROUP1:
+        type: group
+        tasks:
+          - TASK_B:
+              type: chain
+              tasks:
+                - TASK_1
+                - TASK_2
+          - TASK_C:
+              type: chain
+              tasks:
+                - TASK_1
+                - TASK_2
+    - TASK_C
+    - EXAMPLE_GROUP2:
+        type: group
+        tasks:
+          - TASK_B:
+              type: chain
+              tasks:
+                - TASK_1
+                - TASK_2
+          - TASK_C:
+              type: chain
+              tasks:
+                - TASK_1
+                - TASK_2
+    - TASK_D
+
+
+example.NETSTED_3LVL:
+  type: chain
+  tasks:
+    - TASK_A
+    - EXAMPLE_GROUP1:
+        type: group
+        tasks:
+          - TASK_B:
+              type: chain
+              tasks:
+                - TASK_SUB_GROUP:
+                    type: group
+                    tasks:
+                      - TASK_B11
+                      - TASK_B12
+                - TASK_B2
+          - TASK_C
+    - TASK_D

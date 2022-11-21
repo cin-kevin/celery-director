@@ -40,6 +40,12 @@ class CeleryWorkflow:
 
     def get_tasks(self, name):
         return self.get_by_name(name)["tasks"]
+    
+    def get_type(self, name):
+        try:
+            return self.get_by_name(name)["type"]
+        except KeyError:
+            return "chain"
 
     def get_queue(self, name):
         try:

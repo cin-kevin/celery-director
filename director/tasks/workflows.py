@@ -18,6 +18,7 @@ def ping():
 
 @cel.task()
 def start(workflow_id):
+    print(f"<>Start Workflow ID:{workflow_id}")
     logger.info(f"Opening the workflow {workflow_id}")
     workflow = Workflow.query.filter_by(id=workflow_id).first()
     workflow.status = StatusType.progress
@@ -26,6 +27,7 @@ def start(workflow_id):
 
 @cel.task()
 def end(workflow_id):
+    print(f"<>Start Workflow ID:{workflow_id}")
     logger.info(f"Closing the workflow {workflow_id}")
     workflow = Workflow.query.filter_by(id=workflow_id).first()
 

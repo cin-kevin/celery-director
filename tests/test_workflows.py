@@ -18,10 +18,10 @@ def test_execute_one_task_success(app, create_builder):
     assert workflow["status"] == "pending"
 
     # Canvas has been built
-    assert len(builder.canvas) == 3
-    assert builder.canvas[0].task == "director.tasks.workflows.start"
-    assert builder.canvas[-1].task == "director.tasks.workflows.end"
-    assert builder.canvas[1].task == "TASK_EXAMPLE"
+    assert len(builder.canvas.tasks) == 3
+    assert builder.canvas.tasks[0].task == "director.tasks.workflows.start"
+    assert builder.canvas.tasks[-1].task == "director.tasks.workflows.end"
+    assert builder.canvas.tasks[1].task == "TASK_EXAMPLE"
 
     # Tasks added in DB
     with app.app_context():
